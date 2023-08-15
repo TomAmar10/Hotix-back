@@ -11,6 +11,7 @@ import CategoryRouter from "./routes/category-routes";
 import BidRouter from "./routes/bid-routes";
 import SubscribeRouter from "./routes/subscribe-routes";
 import stripeRouter from "./routes/stripe-routes";
+import tagRouter from "./routes/tag-routes";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import { config } from "./utils/config";
@@ -46,28 +47,28 @@ server.use(
 );
 
 // PRODUCTION
-server.set("trust proxy", 1);
-server.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: true,
-    saveUninitialized: true,
-    cookie: {
-      sameSite: "none",
-      secure: true,
-      maxAge: 1000 * 60 * 60 * 24 * 2, // two days
-    },
-  })
-);
-
-// DEVELOPMENT
+// server.set("trust proxy", 1);
 // server.use(
 //   session({
-//     secret: "your-secret-key",
-//     resave: false,
+//     secret: process.env.SESSION_SECRET,
+//     resave: true,
 //     saveUninitialized: true,
+//     cookie: {
+//       sameSite: "none",
+//       secure: true,
+//       maxAge: 1000 * 60 * 60 * 24 * 2, // two days
+//     },
 //   })
 // );
+
+// DEVELOPMENT
+server.use(
+  session({
+    secret: "your-secret-key",
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
 server.use(passport.initialize());
 server.use(passport.session());
@@ -91,6 +92,7 @@ server.use("/hotix/api/categories", CategoryRouter);
 server.use("/hotix/api/bids", BidRouter);
 server.use("/hotix/api/subscribes", SubscribeRouter);
 server.use("/hotix/api/payments", stripeRouter);
+server.use("/hotix/api/tags", tagRouter);
 server.use("*", (Request: Request, response: Response, next: NextFunction) => {
   next(new errorModel(404, "route not found!"));
 });

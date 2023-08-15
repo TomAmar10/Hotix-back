@@ -10,6 +10,7 @@ const addBid = async (
   const bid = request.body;
   const newBid = new BidModel({
     _id: new mongoose.Types.ObjectId(),
+    bid_date: new Date(),
     ...bid,
   });
 
@@ -132,5 +133,3 @@ export default {
   deleteBid,
   getUserBids,
 };
-
-

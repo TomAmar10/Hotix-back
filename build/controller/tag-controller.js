@@ -50,82 +50,31 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var tag_1 = require("../models/tag");
 var mongoose_1 = __importDefault(require("mongoose"));
-var event_1 = require("../models/event");
-var addEvent = function (request, response, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var event, newEvent;
+var getAllTags = function (request, response, next) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
-        event = request.body;
-        newEvent = new event_1.EventModel(__assign({ _id: new mongoose_1.default.Types.ObjectId(), time_create: new Date() }, event));
-        return [2 /*return*/, newEvent
+        return [2 /*return*/, tag_1.TagModel.find()
+                .then(function (categories) {
+                categories
+                    ? response.status(200).json(categories)
+                    : response.status(200).json({ message: "not found" });
+            })
+                .catch(function (err) { return next(err); })];
+    });
+}); };
+var addTag = function (request, response, next) { return __awaiter(void 0, void 0, void 0, function () {
+    var tag, newTag;
+    return __generator(this, function (_a) {
+        tag = request.body;
+        newTag = new tag_1.TagModel(__assign({ _id: new mongoose_1.default.Types.ObjectId() }, tag));
+        return [2 /*return*/, newTag
                 .save()
-                .then(function (event) { return response.status(201).json(event); })
-                .catch(function (err) { return next(err); })];
-    });
-}); };
-var getEvent = function (request, response, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var EventId;
-    return __generator(this, function (_a) {
-        EventId = request.params.eventId;
-        return [2 /*return*/, event_1.EventModel.findById(EventId)
-                .populate("id_category")
-                .then(function (event) {
-                return event
-                    ? response.status(200).json(event)
-                    : response.status(200).json({ message: "not found" });
-            })
-                .catch(function (err) { return next(err); })];
-    });
-}); };
-var getAllEvents = function (request, response, next) { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        return [2 /*return*/, event_1.EventModel.find()
-                .populate(["id_category", "tags"])
-                .then(function (events) {
-                events
-                    ? response.status(200).json(events)
-                    : response.status(200).json({ message: "not found" });
-            })
-                .catch(function (err) { return next(err); })];
-    });
-}); };
-var updateEvent = function (request, response, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var EventId;
-    return __generator(this, function (_a) {
-        EventId = request.params.eventId;
-        return [2 /*return*/, event_1.EventModel.findById(EventId)
-                .then(function (event) {
-                if (event) {
-                    event.set(request.body);
-                    return event
-                        .save()
-                        .then(function (event) { return response.status(201).json(event); })
-                        .catch(function (err) { return next(err); });
-                }
-                else {
-                    response.status(404).json({ message: "not found" });
-                }
-            })
-                .catch(function (err) { return next(err); })];
-    });
-}); };
-var deleteEvent = function (request, response, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var EventId;
-    return __generator(this, function (_a) {
-        EventId = request.params.eventId;
-        return [2 /*return*/, event_1.EventModel.findByIdAndDelete(EventId)
-                .then(function (event) {
-                return event
-                    ? response.status(201).json({ message: "deleted" })
-                    : response.status(404).json({ message: "not found" });
-            })
+                .then(function (tag) { return response.status(201).json(tag); })
                 .catch(function (err) { return next(err); })];
     });
 }); };
 exports.default = {
-    getEvent: getEvent,
-    getAllEvents: getAllEvents,
-    addEvent: addEvent,
-    updateEvent: updateEvent,
-    deleteEvent: deleteEvent,
+    getAllTags: getAllTags,
+    addTag: addTag,
 };

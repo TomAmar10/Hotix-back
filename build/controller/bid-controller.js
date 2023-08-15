@@ -58,7 +58,7 @@ var addBid = function (request, response, next) { return __awaiter(void 0, void 
         switch (_a.label) {
             case 0:
                 bid = request.body;
-                newBid = new bid_1.BidModel(__assign({ _id: new mongoose_1.default.Types.ObjectId() }, bid));
+                newBid = new bid_1.BidModel(__assign({ _id: new mongoose_1.default.Types.ObjectId(), bid_date: new Date() }, bid));
                 _a.label = 1;
             case 1:
                 _a.trys.push([1, 4, , 5]);

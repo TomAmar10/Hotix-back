@@ -14,6 +14,7 @@ const addDeal = async (
   const newId = new mongoose.Types.ObjectId();
   const newDeal = new DealModel({
     _id: newId,
+    deal_date: new Date(),
     ...deal,
   });
   // Update bid in the 'bids' schema

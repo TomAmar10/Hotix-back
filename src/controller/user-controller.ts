@@ -116,10 +116,8 @@ const getAllUsers = async (
     .populate("ratings.id_posted")
     .then((users) => {
       if (!users) throw new ErrorModel(401, "No users to show");
-      const usersObj = users.map((u) => (u.password = ""));
-      usersObj
-        ? response.status(200).json(usersObj)
-        : response.status(200).json({ message: "not found" });
+      users.forEach((u) => (u.password = ""));
+      response.status(200).json(users);
     })
     .catch((err) => next(err));
 };

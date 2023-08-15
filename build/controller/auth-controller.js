@@ -100,7 +100,7 @@ var register = function (request, response, next) { return __awaiter(void 0, voi
             case 0:
                 user = request.body;
                 _a = user_1.UserModel.bind;
-                return [4 /*yield*/, __assign({ _id: new mongoose_1.default.Types.ObjectId() }, user)];
+                return [4 /*yield*/, __assign({ _id: new mongoose_1.default.Types.ObjectId(), time_create: new Date() }, user)];
             case 1:
                 newUser = new (_a.apply(user_1.UserModel, [void 0, _b.sent()]))();
                 return [2 /*return*/, newUser

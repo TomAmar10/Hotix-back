@@ -18,6 +18,7 @@ const register = async (
   const newUser = new UserModel(
     await {
       _id: new mongoose.Types.ObjectId(),
+      time_create: new Date(),
       ...user,
     }
   );

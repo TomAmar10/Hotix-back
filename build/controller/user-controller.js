@@ -194,10 +194,8 @@ var getAllUsers = function (request, response, next) { return __awaiter(void 0, 
                 .then(function (users) {
                 if (!users)
                     throw new error_1.default(401, "No users to show");
-                var usersObj = users.map(function (u) { return (u.password = ""); });
-                usersObj
-                    ? response.status(200).json(usersObj)
-                    : response.status(200).json({ message: "not found" });
+                users.forEach(function (u) { return (u.password = ""); });
+                response.status(200).json(users);
             })
                 .catch(function (err) { return next(err); })];
     });

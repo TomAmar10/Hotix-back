@@ -45,7 +45,10 @@ var EventSchema = new mongoose_1.Schema({
     },
     tags: [
         {
-            type: String,
+            ref: "tags",
+            type: mongoose_1.Schema.Types.ObjectId,
+            trim: true,
+            required: [true, "Missing tag ID"],
         },
     ],
 }, {

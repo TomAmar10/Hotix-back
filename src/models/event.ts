@@ -9,7 +9,7 @@ export interface IEvent {
   time_create: Date;
   image: Buffer | string;
   isApproved: boolean;
-  tags: string[];
+  tags: Schema.Types.ObjectId[];
 }
 
 export interface IEventModel extends Document, IEvent {}
@@ -58,7 +58,10 @@ const EventSchema: Schema = new Schema<IEvent>(
     },
     tags: [
       {
-        type: String,
+        ref: "tags",
+        type: Schema.Types.ObjectId,
+        trim: true,
+        required: [true, "Missing tag ID"],
       },
     ],
   },

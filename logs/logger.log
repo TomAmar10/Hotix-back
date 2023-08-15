@@ -7565,3 +7565,10 @@ error	 2023-08-02 07:47:11 	 users validation failed: password: Missing password
 error	 2023-08-02 07:48:34 	 wrong details !
 error	 2023-08-02 07:50:21 	 users validation failed: password: Missing password
 error	 2023-08-02 07:52:19 	 wrong details !
+error	 2023-08-01 01:00:31 	 Invalid token
+error	 2023-08-01 06:32:40 	 Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "events"
+error	 2023-08-02 10:33:57 	 Cast to ObjectId failed for value "" (type string) at path "_id" for model "tags"
+error	 2023-08-02 01:40:02 	 E11000 duplicate key error collection: hotix.events index: _id_ dup key: { _id: ObjectId('64db3505b8dfffd30f8035f2') }
+error	 2023-08-02 01:43:37 	 E11000 duplicate key error collection: hotix.events index: _id_ dup key: { _id: ObjectId('64db3505b8dfffd30f8035f2') }
+error	 2023-08-02 01:44:32 	 E11000 duplicate key error collection: hotix.events index: _id_ dup key: { _id: ObjectId('64db3505b8dfffd30f8035f2') }
+error	 2023-08-02 01:45:13 	 E11000 duplicate key error collection: hotix.events index: _id_ dup key: { _id: ObjectId('64db3505b8dfffd30f8035f2') }

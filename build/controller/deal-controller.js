@@ -61,7 +61,7 @@ var addDeal = function (request, response, next) { return __awaiter(void 0, void
             case 0:
                 deal = request.body;
                 newId = new mongoose_1.default.Types.ObjectId();
-                newDeal = new deal_1.DealModel(__assign({ _id: newId }, deal));
+                newDeal = new deal_1.DealModel(__assign({ _id: newId, deal_date: new Date() }, deal));
                 // Update bid in the 'bids' schema
                 return [4 /*yield*/, bid_1.BidModel.findByIdAndUpdate(deal.id_bid, {
                         $set: { status: bid_1.StatusBid.CONFIRMED },

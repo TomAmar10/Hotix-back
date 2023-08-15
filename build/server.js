@@ -16,6 +16,7 @@ var category_routes_1 = __importDefault(require("./routes/category-routes"));
 var bid_routes_1 = __importDefault(require("./routes/bid-routes"));
 var subscribe_routes_1 = __importDefault(require("./routes/subscribe-routes"));
 var stripe_routes_1 = __importDefault(require("./routes/stripe-routes"));
+var tag_routes_1 = __importDefault(require("./routes/tag-routes"));
 var dotenv_1 = __importDefault(require("dotenv"));
 var mongoose_1 = __importDefault(require("mongoose"));
 var config_1 = require("./utils/config");
@@ -45,25 +46,25 @@ server.use((0, cors_1.default)({
     credentials: true,
 }));
 // PRODUCTION
-server.set("trust proxy", 1);
-server.use((0, express_session_1.default)({
-    secret: process.env.SESSION_SECRET,
-    resave: true,
-    saveUninitialized: true,
-    cookie: {
-        sameSite: "none",
-        secure: true,
-        maxAge: 1000 * 60 * 60 * 24 * 2, // two days
-    },
-}));
-// DEVELOPMENT
+// server.set("trust proxy", 1);
 // server.use(
 //   session({
-//     secret: "your-secret-key",
-//     resave: false,
+//     secret: process.env.SESSION_SECRET,
+//     resave: true,
 //     saveUninitialized: true,
+//     cookie: {
+//       sameSite: "none",
+//       secure: true,
+//       maxAge: 1000 * 60 * 60 * 24 * 2, // two days
+//     },
 //   })
 // );
+// DEVELOPMENT
+server.use((0, express_session_1.default)({
+    secret: "your-secret-key",
+    resave: false,
+    saveUninitialized: true,
+}));
 server.use(passport_1.default.initialize());
 server.use(passport_1.default.session());
 server.use(body_parser_1.default.json({ limit: "5mb" }));
@@ -81,6 +82,7 @@ server.use("/hotix/api/categories", category_routes_1.default);
 server.use("/hotix/api/bids", bid_routes_1.default);
 server.use("/hotix/api/subscribes", subscribe_routes_1.default);
 server.use("/hotix/api/payments", stripe_routes_1.default);
+server.use("/hotix/api/tags", tag_routes_1.default);
 server.use("*", function (Request, response, next) {
     next(new error_1.default(404, "route not found!"));
 });

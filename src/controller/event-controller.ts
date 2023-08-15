@@ -10,6 +10,7 @@ const addEvent = async (
   const event = request.body;
   const newEvent = new EventModel({
     _id: new mongoose.Types.ObjectId(),
+    time_create: new Date(),
     ...event,
   });
   return newEvent
@@ -40,12 +41,12 @@ const getAllEvents = async (
   next: NextFunction
 ) => {
   return EventModel.find()
-    .populate("id_category")
-    .then((events) =>
+    .populate(["id_category", "tags"])
+    .then((events) => {
       events
         ? response.status(200).json(events)
-        : response.status(200).json({ message: "not found" })
-    )
+        : response.status(200).json({ message: "not found" });
+    })
     .catch((err) => next(err));
 };
 
