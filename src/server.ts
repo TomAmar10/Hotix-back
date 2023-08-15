@@ -47,28 +47,28 @@ server.use(
 );
 
 // PRODUCTION
-// server.set("trust proxy", 1);
-// server.use(
-//   session({
-//     secret: process.env.SESSION_SECRET,
-//     resave: true,
-//     saveUninitialized: true,
-//     cookie: {
-//       sameSite: "none",
-//       secure: true,
-//       maxAge: 1000 * 60 * 60 * 24 * 2, // two days
-//     },
-//   })
-// );
-
-// DEVELOPMENT
+server.set("trust proxy", 1);
 server.use(
   session({
-    secret: "your-secret-key",
-    resave: false,
+    secret: process.env.SESSION_SECRET,
+    resave: true,
     saveUninitialized: true,
+    cookie: {
+      sameSite: "none",
+      secure: true,
+      maxAge: 1000 * 60 * 60 * 24 * 2, // two days
+    },
   })
 );
+
+// DEVELOPMENT
+// server.use(
+//   session({
+//     secret: "your-secret-key",
+//     resave: false,
+//     saveUninitialized: true,
+//   })
+// );
 
 server.use(passport.initialize());
 server.use(passport.session());
