@@ -111,7 +111,7 @@ var UserSchema = new mongoose_1.Schema({
     role: {
         type: Number,
         required: [true, "Missing role"],
-        default: 2,
+        default: Role.ADMIN,
         min: 1,
         max: 2,
     },

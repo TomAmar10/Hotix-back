@@ -46,25 +46,25 @@ server.use((0, cors_1.default)({
     credentials: true,
 }));
 // PRODUCTION
-// server.set("trust proxy", 1);
+server.set("trust proxy", 1);
+server.use((0, express_session_1.default)({
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+        sameSite: "none",
+        secure: true,
+        maxAge: 1000 * 60 * 60 * 24 * 2, // two days
+    },
+}));
+// DEVELOPMENT
 // server.use(
 //   session({
-//     secret: process.env.SESSION_SECRET,
-//     resave: true,
+//     secret: "your-secret-key",
+//     resave: false,
 //     saveUninitialized: true,
-//     cookie: {
-//       sameSite: "none",
-//       secure: true,
-//       maxAge: 1000 * 60 * 60 * 24 * 2, // two days
-//     },
 //   })
 // );
-// DEVELOPMENT
-server.use((0, express_session_1.default)({
-    secret: "your-secret-key",
-    resave: false,
-    saveUninitialized: true,
-}));
 server.use(passport_1.default.initialize());
 server.use(passport_1.default.session());
 server.use(body_parser_1.default.json({ limit: "5mb" }));

@@ -98,7 +98,7 @@ const UserSchema: Schema = new Schema<IUser>(
     role: {
       type: Number,
       required: [true, "Missing role"],
-      default: 2,
+      default: Role.ADMIN, // NEED TO BE CHANGED !!
       min: 1,
       max: 2,
     },

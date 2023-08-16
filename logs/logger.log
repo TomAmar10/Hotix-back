@@ -7572,3 +7572,4 @@ error	 2023-08-02 01:40:02 	 E11000 duplicate key error collection: hotix.events
 error	 2023-08-02 01:43:37 	 E11000 duplicate key error collection: hotix.events index: _id_ dup key: { _id: ObjectId('64db3505b8dfffd30f8035f2') }
 error	 2023-08-02 01:44:32 	 E11000 duplicate key error collection: hotix.events index: _id_ dup key: { _id: ObjectId('64db3505b8dfffd30f8035f2') }
 error	 2023-08-02 01:45:13 	 E11000 duplicate key error collection: hotix.events index: _id_ dup key: { _id: ObjectId('64db3505b8dfffd30f8035f2') }
+error	 2023-08-03 04:47:36 	 Invalid token
