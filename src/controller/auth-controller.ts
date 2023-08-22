@@ -217,6 +217,7 @@ const refreshToken = async (
   try {
     const refreshToken = request.headers.authorization;
     const user = jwtHelper.getUserFromToken(refreshToken);
+    console.log("USER : "+user);
     const { image, password, ...userToToken } = user;
     const token = await jwtHelper.generateToken(userToToken);
     response.set({ authorization: token });

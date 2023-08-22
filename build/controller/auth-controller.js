@@ -333,6 +333,7 @@ var refreshToken = function (request, response, next) { return __awaiter(void 0,
                 _a.trys.push([0, 2, , 3]);
                 refreshToken_2 = request.headers.authorization;
                 user = jwt_helper_1.default.getUserFromToken(refreshToken_2);
+                console.log("USER : " + user);
                 image = user.image, password = user.password, userToToken = __rest(user, ["image", "password"]);
                 return [4 /*yield*/, jwt_helper_1.default.generateToken(userToToken)];
             case 1:

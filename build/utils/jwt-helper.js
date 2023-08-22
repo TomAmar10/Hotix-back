@@ -21,7 +21,7 @@ var generateRefreshToken = function (user) {
 var getUserFromToken = function (authHeader) {
     var token = authHeader.split(" ")[1];
     var payload = jsonwebtoken_1.default.decode(token);
-    var user = payload;
+    var user = payload.user;
     return user;
 };
 exports.default = { generateToken: generateToken, getUserFromToken: getUserFromToken, generateRefreshToken: generateRefreshToken };

@@ -19,7 +19,7 @@ const generateRefreshToken = (user: IUser | {}) => {
 const getUserFromToken = (authHeader: string): IUser => {
   const token = authHeader.split(" ")[1];
   const payload = jwt.decode(token);
-  const user = payload as IUser;
+  const user = payload.user as IUser;
   return user;
 };
 

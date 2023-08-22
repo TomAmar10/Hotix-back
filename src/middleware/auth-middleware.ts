@@ -27,7 +27,7 @@ const authMiddleWare = async (
       }
     }
   } catch (err) {
-    next(err); 
+    next(err);
   }
 };
 
