@@ -11,6 +11,7 @@ import CategoryRouter from "./routes/category-routes";
 import BidRouter from "./routes/bid-routes";
 import SubscribeRouter from "./routes/subscribe-routes";
 import stripeRouter from "./routes/stripe-routes";
+import communityRouter from "./routes/community-routes";
 import tagRouter from "./routes/tag-routes";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
@@ -92,6 +93,7 @@ server.use("/hotix/api/categories", CategoryRouter);
 server.use("/hotix/api/bids", BidRouter);
 server.use("/hotix/api/subscribes", SubscribeRouter);
 server.use("/hotix/api/payments", stripeRouter);
+server.use("/hotix/api/communities", communityRouter);
 server.use("/hotix/api/tags", tagRouter);
 server.use("*", (Request: Request, response: Response, next: NextFunction) => {
   next(new errorModel(404, "route not found!"));

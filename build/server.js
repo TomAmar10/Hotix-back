@@ -16,6 +16,7 @@ var category_routes_1 = __importDefault(require("./routes/category-routes"));
 var bid_routes_1 = __importDefault(require("./routes/bid-routes"));
 var subscribe_routes_1 = __importDefault(require("./routes/subscribe-routes"));
 var stripe_routes_1 = __importDefault(require("./routes/stripe-routes"));
+var community_routes_1 = __importDefault(require("./routes/community-routes"));
 var tag_routes_1 = __importDefault(require("./routes/tag-routes"));
 var dotenv_1 = __importDefault(require("dotenv"));
 var mongoose_1 = __importDefault(require("mongoose"));
@@ -82,6 +83,7 @@ server.use("/hotix/api/categories", category_routes_1.default);
 server.use("/hotix/api/bids", bid_routes_1.default);
 server.use("/hotix/api/subscribes", subscribe_routes_1.default);
 server.use("/hotix/api/payments", stripe_routes_1.default);
+server.use("/hotix/api/communities", community_routes_1.default);
 server.use("/hotix/api/tags", tag_routes_1.default);
 server.use("*", function (Request, response, next) {
     next(new error_1.default(404, "route not found!"));

@@ -75,12 +75,12 @@ const getUserBids = async (
   return BidModel.find({
     $or: [{ id_bidder: id_user }, { id_owner: id_user }],
   })
-    .populate([
-      { path: "tickets", populate: { path: "id_event" } },
-      "id_bidder",
-      "id_owner",
-    ])
-    .then((bids) => {
+  .populate([
+    { path: "tickets", populate: { path: "id_event" } },
+    "id_bidder",
+    "id_owner",
+  ])
+  .then((bids) => {
       bids
         ? response.status(200).json(bids)
         : response.status(200).json({ message: "not found" });
