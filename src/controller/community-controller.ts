@@ -26,7 +26,11 @@ const getCommunity = async (
 ) => {
   const CommunityId = request.params.communityId;
   return CommunityModel.findById(CommunityId)
-    .populate(["members", "events", "join_request"])
+    .populate([
+      "members",
+      "join_request",
+      { path: "events", populate: { path: "tags" } },
+    ])
     .then((community) =>
       community
         ? response.status(200).json(community)
@@ -41,7 +45,11 @@ const getAllCommunities = async (
   next: NextFunction
 ) => {
   return CommunityModel.find()
-    .populate(["members", "events", "join_request"])
+  .populate([
+    "members",
+    "join_request",
+    { path: "events", populate: { path: "tags" } },
+  ])
     .then((communitys) => {
       communitys
         ? response.status(200).json(communitys)

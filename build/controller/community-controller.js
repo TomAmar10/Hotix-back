@@ -68,7 +68,11 @@ var getCommunity = function (request, response, next) { return __awaiter(void 0,
     return __generator(this, function (_a) {
         CommunityId = request.params.communityId;
         return [2 /*return*/, community_1.CommunityModel.findById(CommunityId)
-                .populate(["members", "events", "join_request"])
+                .populate([
+                "members",
+                "join_request",
+                { path: "events", populate: { path: "tags" } },
+            ])
                 .then(function (community) {
                 return community
                     ? response.status(200).json(community)
@@ -80,7 +84,11 @@ var getCommunity = function (request, response, next) { return __awaiter(void 0,
 var getAllCommunities = function (request, response, next) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         return [2 /*return*/, community_1.CommunityModel.find()
-                .populate(["members", "events", "join_request"])
+                .populate([
+                "members",
+                "join_request",
+                { path: "events", populate: { path: "tags" } },
+            ])
                 .then(function (communitys) {
                 communitys
                     ? response.status(200).json(communitys)
