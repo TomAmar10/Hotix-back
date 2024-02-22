@@ -41,7 +41,6 @@ const clientOrigin =
   process.env.MODE_ENV === "development"
     ? "http://localhost:3000"
     : process.env.CLIENT_SIDE_URL;
-    
 server.use(
   cors({
     origin: [clientOrigin],
@@ -105,6 +104,7 @@ server.use("*", (Request: Request, response: Response, next: NextFunction) => {
 });
 server.use(catchAll);
 
-server.listen(process.env.PORT, () =>
-  console.log("listening on port " + process.env.PORT)
-);
+server.listen(process.env.PORT, () => {
+  console.log("listening on port " + process.env.PORT);
+  console.log(clientOrigin);
+});

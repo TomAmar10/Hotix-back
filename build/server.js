@@ -93,5 +93,6 @@ server.use("*", function (Request, response, next) {
 });
 server.use(catch_all_1.default);
 server.listen(process.env.PORT, function () {
-    return console.log("listening on port " + process.env.PORT);
+    console.log("listening on port " + process.env.PORT);
+    console.log(clientOrigin);
 });
