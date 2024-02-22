@@ -44,7 +44,7 @@ const clientOrigin =
     
 server.use(
   cors({
-    origin: [clientOrigin],
+    origin: ["*"],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     allowedHeaders: ["Content-Type", "Authorization", "refreshToken"],
     exposedHeaders: ["Authorization", "refreshToken"],
