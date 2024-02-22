@@ -37,9 +37,14 @@ mongoose
   .catch((err) => console.log(err));
 
 const server = express();
+const clientOrigin =
+  process.env.MODE_ENV === "development"
+    ? "http://localhost:3000"
+    : process.env.CLIENT_SIDE_URL;
+    
 server.use(
   cors({
-    origin: [process.env.CLIENT_SIDE_URL],
+    origin: [clientOrigin],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     allowedHeaders: ["Content-Type", "Authorization", "refreshToken"],
     exposedHeaders: ["Authorization", "refreshToken"],

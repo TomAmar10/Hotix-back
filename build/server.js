@@ -39,8 +39,11 @@ mongoose_1.default
 })
     .catch(function (err) { return console.log(err); });
 var server = (0, express_1.default)();
+var clientOrigin = process.env.MODE_ENV === "development"
+    ? "http://localhost:3000"
+    : process.env.CLIENT_SIDE_URL;
 server.use((0, cors_1.default)({
-    origin: [process.env.CLIENT_SIDE_URL],
+    origin: [clientOrigin],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     allowedHeaders: ["Content-Type", "Authorization", "refreshToken"],
     exposedHeaders: ["Authorization", "refreshToken"],
